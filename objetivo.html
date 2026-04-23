@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Objetivo</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #e5e5e5;
+  padding: 20px;
+  padding-bottom: 120px;
+}
+
+/* TITLE */
+.title {
+  text-align: center;
+  margin: 60px 0 40px;
+  font-size: 32px;
+}
+
+/* LIST */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ITEM */
+.item {
+  background: #dcdcdc;
+  padding: 18px 25px;
+  border-radius: 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+/* ACTIVE */
+.item.active {
+  background: #ffa000;
+  color: white;
+  font-weight: bold;
+}
+
+/* CHECKBOX */
+.item input {
+  width: 22px;
+  height: 22px;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 50px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 30px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 20px;
+}
+
+/* NAVBAR */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  background: #4f6670;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  color: white;
+}
+
+.nav div {
+  text-align: center;
+  font-size: 12px;
+}
+
+.active-nav {
+  color: black;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- TITLE -->
+<h1 class="title">
+  ¿Cuál es tu objetivo principal?
+</h1>
+
+<!-- OPTIONS -->
+<div class="list">
+
+  <div class="item">
+    <span>⚖️ Pérdida de peso</span>
+    <input type="checkbox">
+  </div>
+
+  <div class="item active">
+    <span>🤖 Personalizar con IA</span>
+    <input type="checkbox">
+  </div>
+
+  <div class="item">
+    <span>🏋️ Objetivo activo</span>
+    <input type="checkbox">
+  </div>
+
+  <div class="item">
+    <span>📈 Objetivo básico (general)</span>
+    <input type="checkbox">
+  </div>
+
+  <div class="item">
+    <span>📱 Objetivo concentración/estudio</span>
+    <input type="checkbox">
+  </div>
+
+</div>
+
+<!-- BUTTON -->
+<button class="btn">
+  Continuar →
+</button>
+
+<!-- NAVBAR -->
+<div class="nav">
+  <div>🏠<p>Inicio</p></div>
+  <div>💧<p>Consumo</p></div>
+  <div>⛶<p>Agregar</p></div>
+  <div class="active-nav">🎯<p>Objetivos</p></div>
+  <div>⚙️<p>Ajustes</p></div>
+</div>
+
+</body>
+</html>
