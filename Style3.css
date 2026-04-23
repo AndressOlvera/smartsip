@@ -1,0 +1,54 @@
+/* TITLE */
+.title {
+  text-align: center;
+  margin: 60px 20px 30px;
+  font-size: 28px;
+}
+
+/* LIST */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ITEM */
+.item {
+  background: #ddd;
+  padding: 15px 20px;
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ACTIVE (naranja) */
+.item.active {
+  background: #ffa000;
+  color: white;
+  font-weight: bold;
+}
+
+/* CHECKBOX */
+.item input {
+  width: 20px;
+  height: 20px;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 40px;
+  width: 100%;
+  padding: 18px;
+  border-radius: 30px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 18px;
+}
+
+/* NAV ACTIVE */
+.active-nav {
+  color: black;
+}
