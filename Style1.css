@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #e5e5e5;
+}
+
+/* SCREEN */
+.screen {
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+/* HEADER */
+.header {
+  background: black;
+  color: white;
+  border-radius: 30px;
+  text-align: center;
+  padding: 25px 0;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+/* CARD BLANCA */
+.card {
+  background: #ddd;
+  margin-top: 20px;
+  border-radius: 40px;
+  padding: 25px;
+  height: 500px;
+  position: relative;
+}
+
+.label {
+  color: gray;
+  margin: 0;
+}
+
+.card h2 {
+  margin: 5px 0 0 0;
+}
+
+/* CAJA NARANJA */
+.consumo-box {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+
+  background: #ffa000;
+  border-radius: 40px;
+  height: 250px;
+}
+
+/* TEXTO ACTUAL */
+.actual {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  text-align: right;
+}
+
+.actual span {
+  font-size: 14px;
+}
+
+.actual h3 {
+  margin: 0;
+  font-size: 28px;
+}
+
+/* CÍRCULO CENTRAL */
+.circle {
+  width: 90px;
+  height: 90px;
+  background: #ddd;
+  border-radius: 20px;
+  border: 4px solid #4aa3ff;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* NAVBAR */
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #4f6670;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  color: white;
+}
+
+.nav div {
+  text-align: center;
+  font-size: 12px;
+}
+
+.nav .active {
+  color: #000;
+}
