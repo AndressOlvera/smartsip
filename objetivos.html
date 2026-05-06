@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetivos</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="mobile-screen">
+        <section id="vista-principal">
+            <h1 class="goal-title">Definamos tu objetivo diario</h1>
+
+            <p class="result-box current-goal-box hidden" id="current-goal-box"></p>
+
+            <div class="goal-list">
+                <button class="goal-item" type="button" data-opcion="basica" onclick="seleccionar(this)">
+                    <span>Cantidad objetivo basica</span>
+                    <span class="goal-circle"></span>
+                </button>
+
+                <button class="goal-item active" type="button" data-opcion="actividad" onclick="seleccionar(this)">
+                    <span>Hago actividad fisica</span>
+                    <span class="goal-circle"></span>
+                </button>
+
+                <button class="goal-item" type="button" data-opcion="manual" onclick="seleccionar(this)">
+                    <span>Ya tengo una cantidad objetivo</span>
+                    <span class="goal-circle"></span>
+                </button>
+
+                <button class="goal-item" type="button" data-opcion="ia" onclick="seleccionar(this)">
+                    <span>Personalizar con IA</span>
+                    <span class="goal-circle"></span>
+                </button>
+            </div>
+
+            <button class="primary-action" type="button" onclick="continuarObjetivos()">Continuar →</button>
+        </section>
+
+        <section id="vista-basica" class="hidden">
+            <div class="sub-top">
+                <button class="back-btn" type="button" onclick="volverObjetivos()">← Atrás</button>
+            </div>
+            <h1 class="goal-title small-title">Cantidad objetivo básica</h1>
+            <div class="goal-form-card">
+                <label class="goal-label">Ingresa tu peso corporal</label>
+                <input type="number" class="goal-input" id="basic-weight" placeholder="Ej. 70">
+                <div class="unit-row" id="basic-unit-group">
+                    <button class="unit-btn active" type="button" data-value="kg">kg</button>
+                    <button class="unit-btn" type="button" data-value="lb">lb</button>
+                </div>
+                <button class="primary-action" type="button" id="btn-calc-basic">Calcular</button>
+                <p class="result-box" id="result-basic">Tu cantidad objetivo aparecerá aquí</p>
+            </div>
+        </section>
+
+        <section id="vista-actividad" class="hidden">
+            <div class="sub-top">
+                <button class="back-btn" type="button" onclick="volverObjetivos()">← Atrás</button>
+            </div>
+            <h1 class="goal-title small-title">Hago actividad física</h1>
+            <div class="goal-form-card">
+                <label class="goal-label">Ingresa tu peso corporal</label>
+                <input type="number" class="goal-input" id="activity-weight" placeholder="Ej. 70">
+                <div class="unit-row" id="activity-unit-group">
+                    <button class="unit-btn active" type="button" data-value="kg">kg</button>
+                    <button class="unit-btn" type="button" data-value="lb">lb</button>
+                </div>
+                <label class="goal-label top-space">¿Cuánto tiempo haces ejercicio al día?</label>
+                <div class="mini-options" id="exercise-level-group">
+                    <button class="mini-option" type="button" data-value="menos_30">Menos de 30 min</button>
+                    <button class="mini-option active" type="button" data-value="30_60">30 a 60 min</button>
+                    <button class="mini-option" type="button" data-value="mas_60">Más de 60 min</button>
+                </div>
+                <button class="primary-action" type="button" id="btn-calc-activity">Calcular</button>
+                <p class="result-box" id="result-activity">Tu cantidad objetivo aparecerá aquí</p>
+            </div>
+        </section>
+
+        <section id="vista-manual" class="hidden">
+            <div class="sub-top">
+                <button class="back-btn" type="button" onclick="volverObjetivos()">← Atrás</button>
+            </div>
+            <h1 class="goal-title small-title">Ya tengo una cantidad objetivo</h1>
+            <div class="goal-form-card">
+                <label class="goal-label">Ingresa tu cantidad de agua objetivo diaria</label>
+                <input type="number" class="goal-input" id="manual-amount" placeholder="Ej. 2.5">
+                <div class="unit-row" id="manual-unit-group">
+                    <button class="unit-btn" type="button" data-value="ml">ml</button>
+                    <button class="unit-btn active" type="button" data-value="l">L</button>
+                </div>
+                <button class="primary-action" type="button" id="btn-save-manual">Guardar cantidad</button>
+                <p class="result-box hidden" id="result-manual"></p>
+            </div>
+        </section>
+
+        <section id="vista-ia" class="hidden">
+            <div class="sub-top">
+                <button class="back-btn" type="button" onclick="volverObjetivos()">← Atrás</button>
+            </div>
+            <h1 class="goal-title small-title">Personalizar con IA</h1>
+            <div class="goal-form-card">
+                <div class="chat-box chat-box-large" id="ai-chat-messages"></div>
+
+                <div class="chat-actions-row">
+                    <input type="text" class="goal-input" id="ai-chat-input" placeholder="Cuéntale tu situación al chatbot...">
+                    <button class="secondary-action" type="button" id="ai-send-btn">Enviar</button>
+                </div>
+
+                <label class="goal-label top-space">Cantidad objetivo acordada con el chatbot (L)</label>
+                <input type="number" step="0.1" min="0" class="goal-input" id="ai-final-goal" placeholder="Ej. 2.8">
+
+                <button class="primary-action" type="button" id="ai-finalize-btn">Finalizar</button>
+                <p class="result-box hidden" id="result-ia"></p>
+            </div>
+        </section>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            <span>Inicio</span>
+        </a>
+        <a href="consumo.html" class="nav-item">
+            <span class="nav-icon">◍</span>
+            <span>Consumo</span>
+        </a>
+        <a href="agregar.html" class="nav-item">
+            <span class="nav-icon">＋</span>
+            <span>Agregar</span>
+        </a>
+        <a href="objetivos.html" class="nav-item active">
+            <span class="nav-icon">◎</span>
+            <span>Objetivos</span>
+        </a>
+        <a href="ajustes.html" class="nav-item">
+            <span class="nav-icon">⚙</span>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="common.js"></script>
+    <script src="objetivos.js"></script>
+</body>
+</html>
