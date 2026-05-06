@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="mobile-screen">
+        <div class="top-card">
+            <div class="user-row">
+                <div class="user-info">
+                    <img class="avatar" id="home-avatar" src="imgs/User.jpg" alt="perfil">
+                    <div class="user-text">
+                        <small id="home-date">Abr 29, 2026</small>
+                        <h2 id="home-name">Hola, Andres</h2>
+                        <p><span id="home-today">0.00L</span> Hoy&nbsp;&nbsp;&nbsp; <span id="home-remaining">N/A</span> Faltante</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="page-title">¿Consumiste líquidos adicionales fuera de tu termo?</h1>
+
+        <div class="segmented" id="home-category-buttons">
+            <button class="segment-btn" type="button" data-category="desayuno">Desayuno</button>
+            <button class="segment-btn active" type="button" data-category="comida">Comida</button>
+            <button class="segment-btn" type="button" data-category="otro">Otro</button>
+        </div>
+
+        <div class="range-block">
+            <div class="range-top">
+                <span>Agregar consumo</span>
+                <span class="range-label-light">L</span>
+            </div>
+            <input class="range-input" id="range-agregar" type="range" min="0" max="4" step="0.1" value="0">
+            <div class="range-scale">
+                <span>0</span>
+                <span id="agregar-valor">0.0</span>
+                <span>4</span>
+            </div>
+        </div>
+
+        <div class="accept-container">
+            <button class="accept-btn" id="btn-agregar" type="button">Aceptar</button>
+        </div>
+
+        <div class="range-block"></div>
+
+        <div class="range-block">
+            <div class="range-top">
+                <span>Eliminar consumo</span>
+                <span class="range-label-light">L</span>
+            </div>
+            <input class="range-input" id="range-eliminar" type="range" min="0" max="4" step="0.1" value="0">
+            <div class="range-scale">
+                <span>0</span>
+                <span id="eliminar-valor">0.0</span>
+                <span>4</span>
+            </div>
+        </div>
+
+        <div class="accept-container">
+            <button class="accept-btn" id="btn-eliminar" type="button">Aceptar</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item active">
+            <span class="nav-icon">⌂</span>
+            <span>Inicio</span>
+        </a>
+        <a href="consumo.html" class="nav-item">
+            <span class="nav-icon">◍</span>
+            <span>Consumo</span>
+        </a>
+        <a href="agregar.html" class="nav-item">
+            <span class="nav-icon">＋</span>
+            <span>Agregar</span>
+        </a>
+        <a href="objetivos.html" class="nav-item">
+            <span class="nav-icon">◎</span>
+            <span>Objetivos</span>
+        </a>
+        <a href="ajustes.html" class="nav-item">
+            <span class="nav-icon">⚙</span>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="common.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>
