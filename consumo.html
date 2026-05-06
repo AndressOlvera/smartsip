@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="mobile-screen">
+        <div class="black-header">
+            <h1>Consumo</h1>
+        </div>
+
+        <div class="option-row">
+            <button class="option-tab active" id="btnHoy" type="button">Ver consumo de hoy</button>
+            <button class="option-tab" id="btnSemana" type="button">Ver consumo semanal</button>
+        </div>
+
+        <div id="vistaHoy">
+            <div class="consumo-card">
+                <h3>Objetivo</h3>
+                <h2 id="today-goal">N/A</h2>
+                <div class="progress-shell">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progress-fill"></div>
+                        <div class="consumo-actual">
+                            <div>Actual</div>
+                            <div style="font-size: 32px;" id="today-current">0.00L</div>
+                        </div>
+                    </div>
+                    <div class="progress-note" id="today-percent">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="vistaSemana" class="hidden">
+            <div class="week-card">
+                <h2>Últimos 7 días</h2>
+                <div class="bar-chart" id="weekly-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            <span>Inicio</span>
+        </a>
+        <a href="consumo.html" class="nav-item active">
+            <span class="nav-icon">◍</span>
+            <span>Consumo</span>
+        </a>
+        <a href="agregar.html" class="nav-item">
+            <span class="nav-icon">＋</span>
+            <span>Agregar</span>
+        </a>
+        <a href="objetivos.html" class="nav-item">
+            <span class="nav-icon">◎</span>
+            <span>Objetivos</span>
+        </a>
+        <a href="ajustes.html" class="nav-item">
+            <span class="nav-icon">⚙</span>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="common.js"></script>
+    <script src="consumo.js"></script>
+</body>
+</html>
