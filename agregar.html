@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar</title>
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+    <div class="mobile-screen">
+        <div class="black-header">
+            <h1>Agregar</h1>
+        </div>
+
+        <div class="goal-form-card">
+            <p class="result-box">Escanea un código QR</p>
+
+            <div id="reader" class="qr-reader-box"></div>
+
+            <div class="scan-actions-row">
+                <button class="option-tab active" type="button" id="btn-start-scan">Iniciar cámara</button>
+                <button class="option-tab" type="button" id="btn-stop-scan">Detener</button>
+            </div>
+
+            <div class="scan-result-card" id="scan-result-card">
+                <h3>Resultado del escaneo</h3>
+                <p id="scan-result-text">Aquí aparecerá la información de la botella.</p>
+            </div>
+
+            <div class="scan-history-card">
+                <h3>Últimos escaneos</h3>
+                <div id="scan-history-list">
+                    <p class="scan-empty-text">Aún no hay escaneos registrados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            <span>Inicio</span>
+        </a>
+        <a href="consumo.html" class="nav-item">
+            <span class="nav-icon">◍</span>
+            <span>Consumo</span>
+        </a>
+        <a href="agregar.html" class="nav-item active">
+            <span class="nav-icon">＋</span>
+            <span>Agregar</span>
+        </a>
+        <a href="objetivos.html" class="nav-item">
+            <span class="nav-icon">◎</span>
+            <span>Objetivos</span>
+        </a>
+        <a href="ajustes.html" class="nav-item">
+            <span class="nav-icon">⚙</span>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="common.js"></script>
+    <script src="agregar.js"></script>
+</body>
+</html>
