@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="mobile-screen">
+        <section id="vista-ajustes">
+            <div class="settings-title-box">
+                <h1>Ajustes de cuenta</h1>
+            </div>
+
+            <div class="settings-list">
+                <button class="setting-item button-setting" type="button" onclick="mostrarInformacion()">
+                    <div class="setting-left">
+                        <span>👤</span>
+                        <span>Información personal</span>
+                    </div>
+                    <span>›</span>
+                </button>
+
+                <button class="setting-item button-setting" type="button" onclick="mostrarImagenPerfil()">
+                    <div class="setting-left">
+                        <span>🖼</span>
+                        <span>Imagen de perfil</span>
+                    </div>
+                    <span>›</span>
+                </button>
+
+                <div class="setting-item">
+                    <div class="setting-left">
+                        <span>⚑</span>
+                        <span>Modo oscuro</span>
+                    </div>
+                    <button class="toggle-btn" id="dark-mode-toggle" type="button" onclick="toggleModoOscuro(this)">
+                        <span class="toggle-ball"></span>
+                    </button>
+                </div>
+
+                <button class="setting-item button-setting" type="button" id="logout-btn">
+                    <div class="setting-left">
+                        <span>◉</span>
+                        <span>Cerrar sesion</span>
+                    </div>
+                    <span>›</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="vista-informacion" class="hidden">
+            <div class="info-top-bar">
+                <button class="back-btn" type="button" onclick="volverAjustes()">← Atrás</button>
+                <button class="edit-btn" id="btnEditar" type="button" onclick="toggleEditar()">Cambiar información</button>
+            </div>
+
+            <h1 class="goal-title small-title">Información personal</h1>
+
+            <div class="goal-form-card">
+                <label class="goal-label">Primer nombre</label>
+                <input type="text" class="goal-input info-input" id="info-first-name" disabled>
+
+                <label class="goal-label">Segundo nombre</label>
+                <input type="text" class="goal-input info-input" id="info-second-name" placeholder="Opcional" disabled>
+
+                <label class="goal-label">Apellidos</label>
+                <input type="text" class="goal-input info-input" id="info-last-name" disabled>
+
+                <label class="goal-label">Correo</label>
+                <input type="email" class="goal-input info-input" id="info-email" disabled>
+
+                <label class="goal-label">Contraseña</label>
+                <input type="password" class="goal-input info-input" id="info-password" value="********" disabled>
+
+                <button class="primary-action hidden" id="btnGuardar" type="button">Guardar cambios</button>
+            </div>
+        </section>
+
+        <section id="vista-imagen" class="hidden">
+            <div class="info-top-bar">
+                <button class="back-btn" type="button" onclick="volverAjustes()">← Atrás</button>
+            </div>
+
+            <h1 class="goal-title small-title">Imagen de perfil</h1>
+
+            <div class="goal-form-card">
+                <div class="profile-image-card">
+                    <img src="imgs/User.jpg" alt="Imagen de perfil" id="profile-preview" class="profile-preview">
+                </div>
+                <input type="file" id="profile-image-input" accept="image/*" class="hidden-file-input">
+                <button class="primary-action secondary-action" type="button" id="btn-select-image">Seleccionar imagen</button>
+                <button class="primary-action hidden" type="button" id="btn-save-image">Guardar imagen</button>
+                <p class="result-box" id="profile-image-note">La imagen actual del usuario se mostrará aquí.</p>
+            </div>
+        </section>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <span class="nav-icon">⌂</span>
+            <span>Inicio</span>
+        </a>
+        <a href="consumo.html" class="nav-item">
+            <span class="nav-icon">◍</span>
+            <span>Consumo</span>
+        </a>
+        <a href="agregar.html" class="nav-item">
+            <span class="nav-icon">＋</span>
+            <span>Agregar</span>
+        </a>
+        <a href="objetivos.html" class="nav-item">
+            <span class="nav-icon">◎</span>
+            <span>Objetivos</span>
+        </a>
+        <a href="ajustes.html" class="nav-item active">
+            <span class="nav-icon">⚙</span>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="common.js"></script>
+    <script src="ajustes.js"></script>
+</body>
+</html>
