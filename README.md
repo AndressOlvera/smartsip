@@ -1,79 +1,126 @@
-# SmartSip 
+<div align="center">
 
-**SmartSip** es una aplicación web (diseñada como app móvil) para controlar tu hidratación diaria. Te ayuda a definir una meta de consumo de agua, registrar lo que tomas —escaneando el código QR de tu termo o agregándolo manualmente— y ver tu avance del día y de la semana.
+# SmartSip
+
+**Aplicación web full-stack para controlar la hidratación diaria:** escanea el código QR de tu termo, registra lo que tomas y define tu meta de agua con ayuda de inteligencia artificial.
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-5FA04E?style=flat&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express_5-000000?style=flat&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=flat&logo=googlegemini&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white)
+
+</div>
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/onboarding.png" width="220" alt="Pantalla de bienvenida"><br><sub>Bienvenida</sub></td>
+    <td align="center"><img src="docs/screenshots/inicio.png" width="220" alt="Pantalla de inicio con el consumo del día"><br><sub>Inicio</sub></td>
+    <td align="center"><img src="docs/screenshots/agregar-qr.png" width="220" alt="Escaneo del QR del termo"><br><sub>Escaneo QR del termo</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/objetivos.png" width="220" alt="Selección de la meta diaria"><br><sub>Meta diaria (incluye IA)</sub></td>
+    <td align="center"><img src="docs/screenshots/consumo-semana.png" width="220" alt="Gráfica de consumo semanal"><br><sub>Consumo semanal</sub></td>
+    <td align="center"><img src="docs/screenshots/login.png" width="220" alt="Inicio de sesión"><br><sub>Inicio de sesión</sub></td>
+  </tr>
+</table>
+
+<sub>Capturas tomadas con datos de demostración.</sub>
+
+## Sobre el proyecto
+
+Mucha gente no sabe cuánta agua debería tomar ni cuánta toma realmente. **SmartSip** resuelve ambas cosas: calcula una meta diaria personalizada y lleva el registro del consumo de forma casi automática, leyendo el código QR de un "termo inteligente" que reporta cuánta agua se ha bebido. Lo que se toma fuera del termo (en el desayuno, la comida, etc.) se puede agregar manualmente.
+
+La app está diseñada con una interfaz tipo móvil y cuenta con backend propio, base de datos en la nube y un asistente conversacional con IA.
 
 ## Funcionalidades
 
-- **Cuenta de usuario**: registro e inicio de sesión con contraseña cifrada (bcrypt) y sesión con token JWT válido por 7 días.
-- **Onboarding**: pantallas de bienvenida que presentan la app antes de crear cuenta o iniciar sesión.
-- **Meta diaria de agua**, con cuatro formas de calcularla:
-  | Opción | Cómo se calcula |
-  |---|---|
-  | Cantidad objetivo básica | peso (kg) × 0.035 L |
-  | Hago actividad física | peso (kg) × 0.035 L + 0.25 / 0.5 / 0.75 L según minutos de ejercicio al día (<30, 30–60, >60) |
-  | Ya tengo una cantidad objetivo | el usuario la escribe en L o ml |
-  | Personalizar con IA | chat con **SmartSip IA** (Google Gemini), que recomienda una meta entre 1 y 6 L según peso, actividad, clima y hábitos |
+- **Cuentas de usuario** con registro, inicio de sesión y sesiones protegidas por JWT.
+- **Meta diaria de agua**, calculada de cuatro formas:
+  - **Básica:** según el peso (35 ml por kg).
+  - **Con actividad física:** agrega 0.25 L, 0.5 L o 0.75 L según los minutos de ejercicio al día.
+  - **Manual:** el usuario escribe su propia meta, en litros o mililitros.
+  - **Con IA:** un chat con **SmartSip IA** (Google Gemini) hace preguntas sobre peso, rutina, clima y hábitos, y recomienda una meta entre 1 y 6 L.
+- **Escaneo del termo por QR** con la cámara del dispositivo; el agua consumida se suma automáticamente y se guarda un historial de escaneos.
+- **Registro manual** para agregar o corregir el consumo del día.
+- **Seguimiento:** avance del día respecto a la meta y gráfica de los últimos 7 días.
+- **Perfil y ajustes:** edición de datos personales, foto de perfil y modo oscuro.
 
-  El peso se puede capturar en kg o lb.
-- **Inicio**: consumo de hoy, cuánto falta para la meta, y botones para agregar o quitar consumo (desayuno, comida u otro).
-- **Escaneo de termo por QR**: con la cámara del dispositivo se lee el QR de la botella y se suma el agua consumida al día; se guarda un historial de los últimos escaneos.
-- **Consumo**: porcentaje de la meta alcanzado hoy y gráfica de barras de los últimos 7 días.
-- **Ajustes**: editar información personal (nombre, correo, contraseña), foto de perfil y modo oscuro.
+## Aspectos técnicos destacados
+
+- **API REST de 20 endpoints** con Express 5, organizada por dominio: autenticación, usuarios, consumo, metas, IA y botellas.
+- **Seguridad:** contraseñas cifradas con `bcrypt`, tokens JWT con expiración de 7 días, validación de datos en el servidor y credenciales fuera del código mediante variables de entorno.
+- **Integración con un LLM:** la IA recibe instrucciones de sistema y responde en **JSON estructurado** (`reply`, `recommendedGoalLiters`, `readyToFinalize`). El servidor valida la respuesta, limita la meta a un rango seguro y, si el modelo no devuelve JSON válido, extrae la cantidad del texto.
+- **Lectura de QR flexible:** el QR puede traer los datos de la botella en JSON o una URL que los devuelva (con soporte de redirecciones), y acepta nombres de campo en inglés o en español.
+- **Modelado de datos con Mongoose:** usuarios, consumo diario (con índice único por usuario y fecha, y el detalle de cada acción) y escaneos de botellas.
+
+## Arquitectura
+
+```mermaid
+flowchart LR
+    U[Usuario] --> F["Frontend<br/>HTML · CSS · JavaScript"]
+    F -- "Cámara (html5-qrcode)" --> Q[QR del termo]
+    F -- "fetch + JWT" --> A["API REST<br/>Node.js · Express"]
+    A -- Mongoose --> D[(MongoDB Atlas)]
+    A -- "HTTPS" --> G[Google Gemini API]
+```
 
 ## Tecnologías
 
-- **Frontend**: HTML, CSS y JavaScript sin frameworks; [html5-qrcode](https://github.com/mebjas/html5-qrcode) para leer QR con la cámara.
-- **Backend**: Node.js con Express 5.
-- **Base de datos**: MongoDB Atlas con Mongoose.
-- **Autenticación**: JSON Web Tokens (`jsonwebtoken`) y `bcrypt`.
-- **IA**: API de Google Gemini (`gemini-2.5-flash-lite`).
+| Capa | Tecnologías |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript (vanilla), [html5-qrcode](https://github.com/mebjas/html5-qrcode) |
+| Backend | Node.js, Express 5 |
+| Base de datos | MongoDB Atlas, Mongoose |
+| Autenticación | JSON Web Tokens, bcrypt |
+| Inteligencia artificial | Google Gemini API (`gemini-2.5-flash-lite`) |
 
-## Estructura del repositorio
-
-La versión completa y lista para ejecutar está dentro de **`SmartSip-backend-integrado_FINAL_2.zip`**:
+## Estructura del proyecto
 
 ```
-SmartSip-backend-integrado FINAL 2/
-├── server.js            # Servidor Express + API REST
-├── package.json
-├── models/              # Esquemas de Mongoose
-│   ├── User.js
-│   ├── DailyConsumption.js
-│   └── BottleScan.js
-└── Frontend/            # Pantallas de la app (servidas por Express)
-    ├── onboarding1-4.html, login.html, register.html, terms.html
-    ├── home.html, consumo.html, agregar.html, objetivos.html, ajustes.html
-    ├── *.js, style1.css, styles.css
-    └── imgs/
+smartsip/
+├── server.js          # Servidor Express y API REST
+├── models/            # Esquemas de Mongoose (User, DailyConsumption, BottleScan)
+├── Frontend/          # Pantallas de la app (HTML, CSS, JS e imágenes)
+├── docs/
+│   ├── screenshots/   # Capturas para este README
+│   └── qr-ejemplos/   # Códigos QR de prueba
+├── .env.example       # Plantilla de variables de entorno
+└── package.json
 ```
-
-Los archivos sueltos en la raíz del repositorio son una copia del mismo código (servidor, modelos, pantallas e imágenes) para poder consultarlo directamente en GitHub. Las imágenes `Botella1__1_.png` … `Botella5__1_.png` son **códigos QR de ejemplo** de termos para probar el escáner.
 
 ## Cómo ejecutarlo
 
-Requisitos: [Node.js](https://nodejs.org/) 20.19 o superior y una base de datos de MongoDB (por ejemplo, un clúster gratuito de MongoDB Atlas).
+**Requisitos:** [Node.js](https://nodejs.org/) 20.19 o superior y una base de datos de MongoDB (por ejemplo, un clúster gratuito de [MongoDB Atlas](https://www.mongodb.com/atlas)).
 
-1. Descomprime `SmartSip-backend-integrado_FINAL_2.zip` y entra a la carpeta:
-   ```bash
-   cd "SmartSip-backend-integrado FINAL 2"
-   ```
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-3. Configura en `server.js`:
-   - `mongoConnection`: la cadena de conexión de tu base de datos de MongoDB.
-   - `geminiApiKey`: tu API key de Google Gemini (se obtiene en [Google AI Studio](https://aistudio.google.com/)); solo es necesaria para "Personalizar con IA".
-   - `secretKey`: la clave con la que se firman los tokens JWT.
-4. Inicia el servidor:
-   ```bash
-   node server.js
-   ```
-5. Abre <http://localhost:3000> en el navegador. Para usar la cámara y escanear QR, entra desde `localhost` y acepta el permiso del navegador.
+```bash
+git clone https://github.com/AndressOlvera/smartsip.git
+cd smartsip
+npm install
+cp .env.example .env   # en Windows: copy .env.example .env
+```
 
-## Formato del código QR de la botella
+Completa el archivo `.env`:
 
-El QR puede contener directamente un JSON o una URL que devuelva un JSON. Ejemplo:
+| Variable | Descripción |
+|---|---|
+| `MONGODB_URI` | Cadena de conexión de MongoDB |
+| `JWT_SECRET` | Clave para firmar los tokens de sesión |
+| `GEMINI_API_KEY` | API key de [Google AI Studio](https://aistudio.google.com/) (opcional, solo para la función de IA) |
+| `PORT` | Puerto del servidor (por defecto `3000`) |
+
+Inicia la app y abre <http://localhost:3000>:
+
+```bash
+npm start      # o "npm run dev" para reiniciar automáticamente al editar
+```
+
+> Para usar la cámara, entra desde `localhost` y acepta el permiso del navegador.
+
+### Probar el escáner QR
+
+En [`docs/qr-ejemplos`](docs/qr-ejemplos) hay códigos QR de prueba. Un QR válido contiene un JSON como este, o una URL que lo devuelva:
 
 ```json
 {
@@ -85,9 +132,10 @@ El QR puede contener directamente un JSON o una URL que devuelva un JSON. Ejempl
 }
 ```
 
-También se aceptan los nombres de campo en español: `nombre`, `capacidad` / `capacidadLitros` y `aguaConsumida` / `aguaConsumidaL`.
+<details>
+<summary><strong>Referencia de la API</strong></summary>
 
-## API
+<br>
 
 Todas las rutas, excepto registro e inicio de sesión, requieren el encabezado `Authorization` con el token JWT.
 
@@ -113,3 +161,9 @@ Todas las rutas, excepto registro e inicio de sesión, requieren el encabezado `
 | POST | `/api/goals/ai/finalize` | Guardar la meta acordada con la IA |
 | POST | `/api/bottles/scan` | Registrar el escaneo del QR de una botella |
 | GET | `/api/bottles/scans` | Últimos 10 escaneos |
+
+</details>
+
+## Autor
+
+**Andrés Alfonso Olvera Gonzalez** · [GitHub @AndressOlvera](https://github.com/AndressOlvera)
