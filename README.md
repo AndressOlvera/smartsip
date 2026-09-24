@@ -1,4 +1,4 @@
-# SmartSip 💧
+# SmartSip 
 
 **SmartSip** es una aplicación web (diseñada como app móvil) para controlar tu hidratación diaria. Te ayuda a definir una meta de consumo de agua, registrar lo que tomas —escaneando el código QR de tu termo o agregándolo manualmente— y ver tu avance del día y de la semana.
 
