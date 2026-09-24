@@ -30,7 +30,7 @@
 
 ## Sobre el proyecto
 
-Mucha gente no sabe cuánta agua debería tomar ni cuánta toma realmente. **SmartSip** resuelve ambas cosas: calcula una meta diaria personalizada y lleva el registro del consumo de forma casi automática, leyendo el código QR de un "termo inteligente" que reporta cuánta agua se ha bebido. Lo que se toma fuera del termo (en el desayuno, la comida, etc.) se puede agregar manualmente.
+La idea del proyecto era que mucha gente no sabe cuánta agua debería tomar ni cuánta toma realmente. **SmartSip** resuelve ambas cosas: calcula una meta diaria personalizada y lleva el registro del consumo de forma casi automática, leyendo el código QR de un "termo inteligente" que reporta cuánta agua se ha bebido. Lo que se toma fuera del termo (en el desayuno, la comida, etc.) se puede agregar manualmente.
 
 La app está diseñada con una interfaz tipo móvil y cuenta con backend propio, base de datos en la nube y un asistente conversacional con IA.
 
