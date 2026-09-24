@@ -163,7 +163,3 @@ Todas las rutas, excepto registro e inicio de sesión, requieren el encabezado `
 | GET | `/api/bottles/scans` | Últimos 10 escaneos |
 
 </details>
-
-## Autor
-
-**Andrés Alfonso Olvera Gonzalez** · [GitHub @AndressOlvera](https://github.com/AndressOlvera)
