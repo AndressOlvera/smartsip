@@ -1,0 +1,22 @@
+{
+  "name": "smartsip",
+  "version": "1.0.0",
+  "description": "App web para controlar la hidratación diaria con escaneo QR de termos y metas personalizadas con IA",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.2",
+    "nodemon": "^3.1.14"
+  }
+}

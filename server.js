@@ -15,11 +15,24 @@ const User = require('./models/User');
 const DailyConsumption = require('./models/DailyConsumption');
 const BottleScan = require('./models/BottleScan');
 
+// Variables de entorno: se leen del archivo .env (ver .env.example)
+try {
+    process.loadEnvFile();
+} catch (error) {
+    // Sin archivo .env: se usan las variables de entorno del sistema
+}
+
+const missingVariables = ['MONGODB_URI', 'JWT_SECRET'].filter((name) => !process.env[name]);
+if (missingVariables.length > 0) {
+    console.error(`Faltan variables de entorno: ${missingVariables.join(', ')}. Copia .env.example a .env y complétalo.`);
+    process.exit(1);
+}
+
 const app = express();
-const port = 3000;
-const secretKey = '<JWT_SECRET>';
-const geminiApiKey = '<GEMINI_API_KEY>';
-const geminiModel = 'gemini-2.5-flash';
+const port = Number(process.env.PORT) || 3000;
+const secretKey = process.env.JWT_SECRET;
+const geminiApiKey = process.env.GEMINI_API_KEY || '';
+const geminiModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
 /*
 'gemini-2.5-flash'; - Masomenos
 'gemini-3-flash'; - No
@@ -36,7 +49,7 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'Frontend')));
 
-let mongoConnection = 'mongodb+srv://admin:<PASSWORD>@myapp.mvlzjeq.mongodb.net/test';
+let mongoConnection = process.env.MONGODB_URI;
 let db = mongoose.connection;
 
 db.on('connecting', () => {
@@ -282,7 +295,7 @@ function postJsonHttpsRequest(options, payload) {
 
 async function askGeminiForHydrationChat(history) {
     if (!geminiApiKey || geminiApiKey.includes('PEGA_AQUI')) {
-        throw new Error('Configura tu API key de Gemini en server.js antes de usar Personalizar con IA.');
+        throw new Error('Configura GEMINI_API_KEY en el archivo .env antes de usar Personalizar con IA.');
     }
 
     const contents = sanitizeAiHistory(history);
@@ -983,5 +996,5 @@ app.get('/api/bottles/scans', verifyToken, async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log('localhost' + port);
+    console.log(`SmartSip corriendo en http://localhost:${port}`);
 });
